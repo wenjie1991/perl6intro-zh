@@ -1,3 +1,264 @@
+= Perl 6 入门
+:description: A general introduction to Perl 6
+:Author: Naoum Hankache
+:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro
+:Email: naoum@hankache.com
+:Revision: 1.0
+:icons: font
+:source-highlighter: pygments
+//:pygments-style: manni
+:source-language: perl6
+:pygments-linenums-mode: table
+:toc: left
+:doctype: book
+:lang: en
+
+本文档旨在为您提供 Perl 6 编程语言的快速概述。
+对于那些 Perl 6 新手它应该能够让你开始运行起来。
+
+本文档的一部分章节涉及 http://docs.perl6.org [Perl 6文档]的其他（更完整和准确）部分。
+如果您需要有关特定主题的更多信息，您应该阅读它们。
+
+在本文档中，您会找到大部分所讨论主题的示例。
+为了更好地理解它们，请花时间再现所有的例子。
+
+.License 
+本工作根据知识共享署名 - 授权4.0国际许可协议进行许可。
+要查看此许可证的副本，请访问
+
+* https://creativecommons.org/licenses/by-sa/4.0/.
+
+.Contribution
+如果您想对此文档做贡献，请访问：
+
+* https://github.com/hankache/perl6intro
+
+.Feedback
+欢迎所有的反馈：
+naoum@hankache.com
+
+如果你喜欢这个工作， 欢迎在
+link:https://github.com/hankache/perl6intro[Github] 给这个仓库点赞。
+
+.Translations
+* Bulgarian: http://bg.perl6intro.com
+* Dutch: http://nl.perl6intro.com
+* French: http://fr.perl6intro.com
+* German: http://de.perl6intro.com
+* Japanese: http://ja.perl6intro.com
+* Portuguese: http://pt.perl6intro.com
+* Spanish: http://es.perl6intro.com
+* Chinese：http://zh.perl6intro.com
+
+:sectnums:
+== 序言
+=== 什么是 Perl 6
+Perl 6 是一种高级的，通用的，渐进类型的语言。
+Perl 6 是多范式的。它支持过程式编程，面向对象编程和函数式编程。
+
+.Perl 6 motto:
+* TMTOWTDI (发音是 Tim Toady): 条条大路通罗马。
+* 容易的事情应该保持容易，困难的事情应该变得容易，不可能的事情应该变得困难。
+
+=== 行话
+* *Perl 6*: 带有测试套件的语言规范。
+通过该规范测试套件的实现被认为是 Perl 6。
+* *Rakudo*: Perl 6 的编译器
+* *Rakudobrew*: Rakudo 的安装管理器 
+* *Panda*: Perl 6 的模块安装程序。
+* *Rakudo Star*: 是一个包含 Rakudo, Panda, 和很多 Perl 6 模块与文档的包。
+
+=== 安装 Perl 6
+.Linux
+. 安装 Rakudobrew: https://github.com/tadzik/rakudobrew
+
+. 安装 Rakudo: 在终端中键入如下命令 `rakudobrew build moar`
+
+. 安装 Panda: 在终端中键入如下命令 `rakudobrew build panda`
+
+. 安装 Task::Star Rakudo Star 中包含的模块元包: 在终端中键入如下命令 `panda install Task::Star`
+
+对于其它选项, 请参阅 http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
+
+.OSX
+可用的选择有四种:
+
+* 按照在 Linux 上安装列出的相同步骤操作
+* 使用 homebrew 安装: `brew install rakudo-star`
+* 使用 MacPorts 安装: `sudo port install rakudo`
+* 从 http://rakudo.org/downloads/star/ 下载最新的安装器(.dmg 后缀的文件) 
+
+.Windows
+. 从 http://rakudo.org/downloads/star/ 下载最新的安装器(.msi 后缀的文件)  +
+如果你的系统架构是 32-bit, 则下载 x86 文件; 如果是 64-bit, 下载 x86_64 文件。
+. 安装完成后确保 `C:\rakudo\bin` 在 PATH 中。
+
+.Docker
+. 获取官方的 Docker 镜像 `docker pull rakudo-star`
+. 然后运行一个带有该镜像的容器 `docker run -it rakudo-star`
+
+=== 运行 Perl 6 代码
+
+运行 Perl 6 代码可以通过使用 REPL（Read-Eval-Print 循环)来实现。实现方法是，打开命令行终端，输入 `perl6` 后回车。这会导致命令提示符 `>` 的出现。接着, 输入一行代码后回车。REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或输入 `exit` 并回车以离开 REPL。
+
+或者，你可以在文件中编写你的代码，保存后再运行。建议 Perl 6 脚本文件的扩展名设定为 `.pl6`。运行该文件的代码时只需将 `perl6 filename.pl6` 输入到命令行终端后回车即可。但不像 REPL, 这不会自动打印出每一行的结果：这里要求文件中的代码必须包含 `say` 那样的语句以打印输出。
+
+REPL 大多用于测试特殊代码片段，通常只有有一行。对于超过一行的程序，建议先把它们保存到文件中而后再运行。
+
+单行代码也通过在命令行中键入  `perl6 -e 'your code here'` 并回车来以非交互的方式来测试。
+
+[TIP]
+--
+Rakudo Star 捆绑了一个能帮你从 REPL 中获取大部分输出的行编辑器。
+
+如果你安装了普通的 Rakudo 而不是 Rakudo Star，那么你的行编辑功能可能没有开启（利用上下方向键查询历史；左右方向键以编辑输入；TAB 键以完成当前行输入）功能。此时可以考虑运行以下命令，可以设置好上述功能：
+
+* `panda install Linenoise` 能在 Windows, Linux 和 OSX 上工作
+
+* `panda install Readline` 如果你在 Linux 上并且偏好 _Readline_ 库
+--
+
+=== 编辑器
+因为大多数情况下我们会在文件中编写并存储 Perl 6 程序，因此我们需要一个优雅的而且能识别 Perl 6 语法的文本编辑器。
+
+从个人角度来说，我推荐正在使用的 https://atom.io/[Atom]。这是一个时尚的文本编辑器，带有开箱即用的 Perl 6 语法高亮功能。https://atom.io/packages/language-perl6fe[Perl6-fe] 是相对于 Atom 的另一种选择，也可以高亮 Perl 6 的语法，该软件来源于原始的包，但存在很多 bug 需要修补和编辑。
+
+社区里的其他同伴也有使用 http://www.vim.org/[Vim] ，https://www.gnu.org/software/emacs/[Emacs] 和 http://padre.perlide.org/[Padre] 的。
+
+最新版本的 Vim 带有语法高亮的功能，Emacs 和 Padre 则需要另行安装额外的包。
+
+
+=== Hello World!
+我们会从 `hello world` 惯例程序开始。
+
+[source,perl6]
+say 'hello world';
+
+它也可以被写为:
+
+[source,perl6]
+'hello world'.say;
+
+=== 语法概要
+Perl 6 是 *形式自由的*: 你可以使用(大多数时候)任何数量的空白.
+
+*语句* 通常是一个逻辑代码行, 它们需要以一个分号结尾:
+`say "Hello" if True;`
+
+*表达式* 是一种能够返回值的特殊类型的语句:
+`1+2` 会返回 `3`
+
+表达式由 *项* 和 *运算符* 组成。
+
+*项* 是:
+
+* *变量*: 一个可以被操作和改变的值。
+
+* *字面值*: 一个像数字或字符串那样的常量值。
+
+*运算符* 被归为类型:
+
+|===
+
+| *类型* | *解释* | *示例*
+
+| 前缀 | Before the term. | `++1`
+
+| 中缀 | Between terms | `1+2`
+
+| 后缀 | After the term | `1++`
+
+| 环缀 | Around the term | `(1)`
+
+| 后环缀 | After one term, around another  | `Array[1]`
+
+|===
+
+==== 标识符
+标识符是你定义项时给它们起的名字。
+
+.Rules:
+* 它们必须以字母字符或下划线开头。
+
+* 它们可以包含数字 (除了第一个字符)。
+
+* 它们可以包含破折号或撇好(除了第一个和最后一个字符), 前提是每个短划线或撇号的右侧有一个字母字符。
+
+|===
+
+| *Valid* | *Invalid*
+
+| `var1` | `1var`
+
+| `var-one` | `var-1`
+
+| `var'one` | `var'1`
+
+| `var1_` | `var1'`
+
+| `_var` | `-var`
+
+|===
+
+.命名约定:
+* 驼峰式: `variableNo1`
+
+* 串联式: `variable-no1`
+
+* Snake case: `variable_no1`
+
+您可以随意命名您的标识符，但是最好采用一个命名约定。
+
+使用有意义的名称将减轻你（和其他人）的编程生活。
+
+* `var1 = var2 * var3` 在语法上是正确的，但它的目的不明显。
+* `monthly-salary = daily-rate * working-days` 会是更好的命名变量的方法。
+
+==== 注释
+注释是被编译器忽略的文本片段并用作注解。
+
+注释被分为 3 种类型:
+
+* 单行注释:
++
+[source,perl6]
+# This is a single line comment
+
+* 嵌套的注释:
++
+[source,perl6]
+say #`(This is an embedded comment) "Hello World."
+
+* 多行注释:
++
+[source,perl6]
+-----------------------------
+=begin comment
+This is a multi line comment.
+Comment 1
+Comment 2
+=end comment
+-----------------------------
+
+==== 引号
+字符串要么被双引号分割要么被单引号分割Strings need to be delimited by either double quotes or single quotes.
+
+总是使用双引号:
+
+* 如果你的字符串包含单引号。
+
+* 如果你对字符串包含需要被插值的变量。
+
+[source,perl6]
+-----------------------------------
+say 'Hello World';   # Hello World
+say "Hello World";   # Hello World
+say "Don't";         # Don't
+my $name = 'John Doe';
+say 'Hello $name';   # Hello $name
+say "Hello $name";   # Hello John Doe
+-----------------------------------
+
 == 运算符
 
 === 一般运算符
@@ -804,6 +1065,324 @@ loop (my $i = 0; $i < 5; $i++) {
 ----
 
 NOTE: 更多关于循环和条件语句的信息，参见 https://docs.perl6.org/language/control
+
+
+== I/O
+在 Perl 6 中，两个最常用的输入/输出的端口是终端和文件。
+
+=== 在终端中基本的 I/O 操作
+
+==== say
+`say` 能输出到标准输出，而且它还会在输出的最后添加一个换行符，请见下面的示例代码：
+
+[source,perl6]
+----
+say 'Hello Mam.';
+say 'Hello Sir.';
+----
+会在两行中分别打印出来。
+
+==== print
+`print` 的功能和 `say` 相似，但是它不会在输出内容后添加换行符。
+
+试试将 `say` 换成 `print` 比较一下它们两者的特点。
+
+==== get
+`get` 用来获取终端中的输入。
+
+[source,perl6]
+----
+my $name;
+
+say "Hi, what's your name?";
+$name = get;
+
+say "Dear $name welcome to Perl 6";
+----
+
+当上面的代码运行是，终端会等你输入你的名字和回车键。
+然后就会向你打招呼。
+
+==== prompt
+`prompt` 结合了 `print` 和 `get`。
+
+以上的例子可以改写成一下方式：
+
+[source,perl6]
+----
+my $name = prompt "Hi, what's your name? ";
+
+say "Dear $name welcome to Perl 6";
+----
+
+=== 运行 Shell 命令
+有两种子程序可以用来运行 shell 命令：
+
+* `run` 不通过 shell 运行外部命令。
+
+* `shell` 通过系统 shell 来运行命令。它依赖系统平台和它的 shell。
+所有的保留字(meta chracters) 会被 shell 解释，包括管道(pipes)、重定向、环境变量替换等等。
+
+[source,perl6]
+.如果你用的是 Linux 或 OSX 请运行一下代码：
+----
+my $name = 'Neo';
+run 'echo', "hello $name";
+shell "ls";
+----
+
+[source,perl6]
+.如果你用的是 Windows 请运行下面这段代码：
+----
+shell "dir";
+----
+`echo` 和 `ls` 是常用的 Linux shell 命令+
+`echo` 打印文本到终端（和 Perl 6 中的 `print` 相同+
+`ls` 列出当前目录下所有的文件和文件夹。
+
+`dir` 在 Windows 中和 `ls` 的功能相同。
+
+
+=== File I/O
+==== slurp
+`slurp` 用来从文件中读入数据。
+
+建立一个文本文件包含一下内容：
+
+.datafile.txt
+----
+John 9
+Johnnie 7
+Jane 8
+Joanna 7
+----
+[source,perl6]
+----
+my $data = slurp "datafile.txt";
+say $data;
+----
+
+==== spurt
+`spurt` 用来向文件写入数据。
+
+[source,perl6]
+----
+my $newdata = "New scores:
+Paul 10
+Paulie 9
+Paulo 11";
+
+spurt "newdatafile.txt", $newdata;
+----
+
+在运行上述代码后，一个存储有新 score 的文件 _newdatafile.txt_ 会被创建。
+
+=== 文件和文件目录操作
+在先前的例子中，Perl 6 能不使用 shell 命令的情况下列出一个目录下所有的内容。
+
+[source,perl6]
+----
+say dir;              # 列出当前目录下的文件和文件夹
+say dir "/Documents"; # 列出特定目录下的文件和文件夹
+----
+
+另外你还能创建和删除目录。
+
+[source,perl6]
+----
+mkdir "newfolder";
+rmdir "newfolder";
+----
+
+`mkdir` 创建一个新的目录。 +
+`rmdir` 删除一个空目录。如果目录不为空则返回 error。
+
+你还可以检查特定的路径是否存在：
+
+在你要运行一下脚本的目录中，建立一个叫 `folder123` 的空文件夹和一个文件 `script123.pl6`
+
+[source,perl6]
+----
+say "script123.pl6".IO.e;
+say "folder123".IO.e;
+
+say "script123.pl6".IO.d;
+say "folder123".IO.d;
+
+say "script123.pl6".IO.f;
+say "folder123".IO.f;
+----
+
+`IO.e` 检查文件夹或文件是否存在。+
+`IO.f` 检查路径所指的是否为文件。+
+`IO.d` 检查路径所指的是否为文件夹。
+
+WARNING: Windows 下使用 `/` 或 `\\` 来定义目录 +
+`C:\\rakudo\\bin` +
+`C:/rakudo/bin` +
+
+NOTE: 更多关于 I/O，详见 https://docs.perl6.org/type/IO
+
+== Subroutines 子程序
+=== Definition 定义
+*子程序(Subroutines)* (也叫 *subs* 或 *functions*) 是一系列的功能性的打包(are a means of packaging a set of functionality.)。 +
+
+定义子程序时以关键字 `sub` 起始。在定义之后你能通过子程序名(句柄？handle)来进行调用。+
+让我们来看下面的例子：
+
+[source,perl6]
+----
+sub alien-greeting {
+  say "Hello earthlings";
+}
+
+alien-greeting;
+----
+
+上面的例子给我们展示了一个不需要输入参数的子程序。
+
+=== Signature 函数签名
+很多子程序需要多个输入才能运行。这些输入由 *参数* 提供。
+一个子程序可以不定义或定义多个 *参数*。
+子程序所定义的参数之个数与类型称为它的*函数签名*。
+
+下面的子程序接收一个字符串参数。
+
+[source,perl6]
+----
+sub say-hello (Str $name) {
+    say "Hello " ~ $name ~ "!!!!"
+}
+say-hello "Paul";
+say-hello "Paula";
+----
+
+=== Multiple dispatch 多分配
+我们可以定义多个有相同命名但有不同函数签名的的子程序。
+当这样的子程序被调用的时候，运行环境会根据提供的参数之数量和类型判断那个版本的同名子程序来运行。
+这种子程序和普通的子程序的定义方法是一样的，不过我们需要使用 `multi` 来代替原先的 `sub`。
+
+[source,perl6]
+----
+multi greet($name) {
+    say "Good morning $name";
+}
+multi greet($name, $title) {
+    say "Good morning $title $name";
+}
+
+greet "Johnnie";
+greet "Laura","Mrs.";
+----
+
+=== Default and Optional Parameters 默认参数和可选参数
+如果一个子程序被定义需要一个参数，但是我们调用它的时候没有提供所需的参数，那么这个子程序就不能运行。
+
+不过 Perl 6 提供了：
+
+* 可选参数
+* 默认参数
+
+可选参数在定义的时候需要在参数名后加 `?`。
+
+[source,perl6]
+----
+sub say-hello($name?) {
+  with $name { say "Hello " ~ $name }
+  else { say "Hello Human" }
+}
+say-hello;
+say-hello("Laura");
+----
+
+如果使用者没有提供参数，那么它就默认使用预先给定的值。+
+上面是通过在子程序中给参数赋值的方式实现的。
+
+[source,perl6]
+----
+sub say-hello($name="Matt") {
+  say "Hello " ~ $name;
+}
+say-hello;
+say-hello("Laura");
+----
+
+=== 返回值
+我们现在为止看到的子程序都在终端中打印一些文字。
+
+一些时候我们需要让子程序 *返回* 值让我们能在我们的程序中能重复使用。
+
+在一般的情景下，子程序代码的最后一行被默认为返回值。
+[source,perl6]
+.Implicit return
+----
+sub squared ($x) {
+  $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+
+一旦我们的代码变多，_清楚地指明我们需要返回的变量是很有用的。
+可以使用 `return` 关键字来指明返回变量。
+[source,perl6]
+.Explicit return
+----
+sub squared ($x) {
+  return $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+==== 限制返回值
+在之前的例子中，我们对将子程序的参数限定为特定类型。
+我们可以同样地限定返回值的类型。
+
+为了将返回值限定为特定类型，我们可以使用 `returns` 特征 (trait) 或在函数签名中使用箭标。
+
+[source,perl6]
+.使用返回特征
+----
+sub squared ($x) returns Int {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+
+[source,perl6]
+.使用箭标
+----
+sub squared ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+如果子程序不能提供符合类型要求的返回值，程序就会报错。
+
+----
+Type check failed for return value; expected Int but got Rat (1.44)
+----
+
+[TIP]
+====
+类型限制不仅控制返回值的类型，它也可以控制返回值是否定义。
+(Not only can type constraints control the type of the return value; they can also control its definedness.)
+
+之前的例子中，我们指定了返回值必须为 `Int`，这与返回值的定义无关。
+我们可以指定返回值 `Int` 需要被严格定义或者不用定义：+
+`--> Int:D` and `--> Int:U`
+
+使用类型限制是一个好的习惯。+
+以下是将前面例子修改后的结果，其中使用 `:D` 强制返回经定义 `Int`。
+
+[source,perl6]
+----
+sub squared ($x --> Int:D) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+====
+
+NOTE: 关于更多子程序和函数的资料，详见 https://docs.perl6.org/language/functions
 
 
 == 函数式编程
