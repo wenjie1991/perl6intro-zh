@@ -14,7 +14,7 @@
 :lang: en
 
 本文档旨在为您提供 Perl 6 编程语言的快速概述。
-对于那些 Perl 6 新手它应该能够让你开始运行起来。
+它可以让 Perl 6 初学者快速上手。
 
 本文档的一部分章节涉及 http://docs.perl6.org [Perl 6文档]的其他（更完整和准确）部分。
 如果您需要有关特定主题的更多信息，您应该阅读它们。
@@ -57,16 +57,16 @@ Perl 6 是一种高级的，通用的，渐进类型的语言。
 Perl 6 是多范式的。它支持过程式编程，面向对象编程和函数式编程。
 
 .Perl 6 motto:
-* TMTOWTDI (发音是 Tim Toady): 条条大路通罗马。
-* 容易的事情应该保持容易，困难的事情应该变得容易，不可能的事情应该变得困难。
+* TMTOWTDI (发音是 Tim Toady): 每个问题都有许多解决方式。
+* 简单的事情应该保持简单，困难的事情应该变得简单，不可能的事情应该成为可能。
 
-=== 行话
+=== 术语 
 * *Perl 6*: 带有测试套件的语言规范。
-通过该规范测试套件的实现被认为是 Perl 6。
-* *Rakudo*: Perl 6 的编译器
-* *Rakudobrew*: Rakudo 的安装管理器 
+Perl 6 是通过该规范测试套件的实现。
+* *Rakudo*: Perl 6 的编译器。
+* *Rakudobrew*: Rakudo 的安装管理器。
 * *Panda*: Perl 6 的模块安装程序。
-* *Rakudo Star*: 是一个包含 Rakudo, Panda, 和很多 Perl 6 模块与文档的包。
+* *Rakudo Star*: 是一个包含 Rakudo, Panda, 和经遴选的 Perl 6 模块与文档的分发包。
 
 === 安装 Perl 6
 .Linux
@@ -83,7 +83,7 @@ Perl 6 是多范式的。它支持过程式编程，面向对象编程和函数�
 .OSX
 可用的选择有四种:
 
-* 按照在 Linux 上安装列出的相同步骤操作
+* 按照在 Linux 上安装步骤进行同样的操作
 * 使用 homebrew 安装: `brew install rakudo-star`
 * 使用 MacPorts 安装: `sudo port install rakudo`
 * 从 http://rakudo.org/downloads/star/ 下载最新的安装器(.dmg 后缀的文件) 
@@ -109,7 +109,7 @@ REPL 大多用于测试特殊代码片段，通常只有有一行。对于超过
 
 [TIP]
 --
-Rakudo Star 捆绑了一个能帮你从 REPL 中获取大部分输出的行编辑器。
+Rakudo Star 搭载了一个行编辑器来帮你最大程度利用 REPL。
 
 如果你安装了普通的 Rakudo 而不是 Rakudo Star，那么你的行编辑功能可能没有开启（利用上下方向键查询历史；左右方向键以编辑输入；TAB 键以完成当前行输入）功能。此时可以考虑运行以下命令，可以设置好上述功能：
 
