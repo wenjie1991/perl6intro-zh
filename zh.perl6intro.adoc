@@ -2918,9 +2918,9 @@ say $var;
 
 [source,perl6]　
 ----
-my @array = (0..50000);                     #Array population
-my @result = @array.map({ is-prime $_ });   #call is-prime for each array element
-say now - INIT now;                         #Output the time it took for the script to complete
+my @array = (0..50000);                     # Array population
+my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
+say now - INIT now;                         # Output the time it took for the script to complete
 ----
 
 .考虑上面的例子:
@@ -2932,9 +2932,9 @@ say now - INIT now;                         #Output the time it took for the scr
 .幸运的是, 我们能同时在多个数组元素身上调用 `is-prime` 函数:
 [source,perl6]
 ----
-my @array = (0..50000);                         #Array population
-my @result = @array.race.map({ is-prime $_ });  #call is-prime for each array element
-say now - INIT now;                             #Output the time it took to complete
+my @array = (0..50000);                         # Array population
+my @result = @array.race.map({ is-prime $_ });  # call is-prime for each array element
+say now - INIT now;                             # Output the time it took to complete
 ----
 
 注意表达式中使用的 `race`。这个方法会使数组元素能够并行地迭代。
@@ -2963,7 +2963,7 @@ my @result = @array.hyper.map( {$_ + 1} );
 
 如果你俩个脚本都运行了, 你应该注意到一个排序了一个没有排序。
 
-=== 
+==== 
 
 ==== 任务并行化
 
