@@ -372,19 +372,19 @@ say "Hello $name";   # Hello John Doe
 
 | ... | 中缀(Infix) | 惰性列表构造函数 |  0...9999  |  只有接到请求时才返回元素
 
-.2+| {vbar} .2+| 前缀(Prefix) .2+| Flattening 扁平化 | {vbar}(0..5)  | (0 1 2 3 4 5) 
+.2+| {vbar} .2+| 前缀(Prefix) .2+| 扁平化 | {vbar}(0..5)  | (0 1 2 3 4 5) 
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
 |===
 
-=== Reversed Operators 逆转运算符
+=== 反转运算符
 
-在任何运算符前加`R`就可以得到调换运算符两边的参数得到的结果。
+在任何运算符前加 `R` 就可以得到调换运算符两边的参数得到的结果。
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| 正常运算符 | 结果 | Reversed Operator 逆运算符 | 结果
+| 正常运算符 | 结果 | 反转运算符 | 结果
 
 | 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
 
@@ -392,14 +392,14 @@ say "Hello $name";   # Hello John Doe
 
 |===
 
-=== Reduction Operators 简约运算符
+=== 化简运算符
 
-Reduction operators work on lists of values. 简约运算符应用于一列值。
-They are formed by surrounding the operator with brackets `[]` 简约运算符由包裹有方括号`[]`运算符来表示。
+化简运算符应用于一个值的列表。
+化简运算符由包裹有方括号`[]`的运算符来表示。
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| 正常运算符 | 结果 | Reduction Operator 简约运算符 | 结果
+| 正常运算符 | 结果 | 化简运算符 | 结果
 
 | 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
 
@@ -407,7 +407,7 @@ They are formed by surrounding the operator with brackets `[]` 简约运算符�
 
 |===
 
-NOTE: 可以前往https://docs.perl6.org/language/operators查看完整的运算符列表和它们的优先级。
+注意： 可以前到 https://docs.perl6.org/language/operators 查看完整的运算符列表和它们的优先级。
 
 == 变量
 Perl 6 中的变量分为3类：标量、数组和哈希。
@@ -449,7 +449,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: 所有可应用于字符串的方法列表，请参照https://docs.perl6.org/type/Str
+注意： 所有可应用于字符串的方法列表，请参照https://docs.perl6.org/type/Str
 
 [source,perl6]
 .整数
@@ -462,7 +462,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: 所有可应用于整数的方法列表，请参照https://docs.perl6.org/type/Int
+注意： 所有可应用于整数的方法列表，请参照https://docs.perl6.org/type/Int
 
 [source,perl6]
 .有理数
@@ -479,7 +479,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: 所有可应用于有理数的方法列表，请参照https://docs.perl6.org/type/Rat
+注意： 所有可应用于有理数的方法列表，请参照https://docs.perl6.org/type/Rat
 
 === Arrays 数组
 数组是储存有多个值的列表。
@@ -492,7 +492,7 @@ say @animals;
 
 下面例子中的操作符可以应用于列表：
 
-TIP: 波浪符`～`用于列表中字符串的连接。
+TIP: 波浪符`~`用于列表中字符串的连接。
 
 [source,perl6]
 .`脚本` 
@@ -603,7 +603,7 @@ say @tbl
 [3 z]
 ----
 
-NOTE: 对于完整的数组参考资料，请参见https://docs.perl6.org/type/Array
+注意：对于完整的数组参考资料，请参见https://docs.perl6.org/type/Array
  
 === Hashes 哈希
 [source,perl6]
@@ -647,9 +647,9 @@ The capital of France is: Paris
 `.values` 返回一个包含所有值的列表 +
 我们可以通过哈希中特定值所对应的键来访问这个值。 `%hash<key>`
 
-NOTE: 完整的哈希参考资料，请见https://docs.perl6.org/type/Hash
+注意： 完整的哈希参考资料，请见https://docs.perl6.org/type/Hash
 
-=== Types 类型
+=== 类型
 前面的例子中，我们并没有指定变量中值的类型。
 
 TIP: `.WHAT` 会返回变量中值的类型。
@@ -685,7 +685,7 @@ say $var.WHAT;
 
 这种编程风格被称为静态类型编程。静态在这里是指变量类型在赋值前定义并且不能在更改。
 
-Perl 6 属于 *gradually typed* ；它同时支持*静态*和*动态*类型。
+Perl 6 属于 *渐进类型* ；它同时支持*静态*和*动态*类型。
 
 .数组和哈希同样可以为静态类型:
 [source,perl6]
@@ -715,9 +715,9 @@ say %country-codes.WHAT;
 
 | *类型*  | *描述* | *例子* | *结果*
 
-| Mu | The root of the Perl 6 type hierarchy Perl 6 的基础类型 | |
+| Mu | Perl 6 的基础类型 | |
 
-| Any | Default base class for new classes and for most built-in classes 新类的默认类型，同时也是大部分内部类的类型 | |
+| Any | 新类的默认类型，同时也是大部分内部类的类型 | |
 
 | Cool | 既可以被当做数值也可以作为字符串 | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
 
@@ -757,7 +757,7 @@ say $var2.WHAT;   # (Any)
 一个不是强声明定义的空变量，它的类型是 `(Any)`+
 可以通过赋 `Nil` 给变量，来清除变量的值。
 
-=== Scoping 作用域
+=== 作用域
 在第一次使用变量之前，变量需要被声明。
 
 在Perl6中可以使用使用多种声明方式。其中 `my` 已经在上述例子中使用到。
@@ -792,7 +792,7 @@ my Int $var = 123;
 say $var;
 ----
 
-=== Assignment vs. Binding 赋值 vs. 绑定
+=== 赋值 vs. 绑定
 我们已经在前面的例子中看到如何将*值赋*给变量。 +
 *赋值*通过 `=` 操作符完成。
 [source,perl6]
@@ -855,9 +855,9 @@ say $a;
 ----
 
 就像你已经注意到的那样，绑定变量是双向的。+
-`$a := $b` and `$b := $a` have the same effect.
+`$a := $b` 和 `$b := $a` 拥有同样的效果.
 
-NOTE: 关于变量的更多信息，请见： https://docs.perl6.org/language/variables
+注意： 关于变量的更多信息，请见： https://docs.perl6.org/language/variables
 
 == 函数和修改器
 
@@ -891,7 +891,7 @@ say @numbers;      #4
 .说明
 `.push` 是一个修改器，它会改变数组的状态。(#1)
 
-`.sort` 是一个函数，它返回排序后的数组，但是不改变原始数组。:
+`.sort` 是一个函数，它返回排序后的数组，但是不改变原始数组。
 
 * (#2) 展示了它返回排序后的数组。
 
@@ -1055,7 +1055,7 @@ given $var {
 `loop` 是进行 `for` 循环的另一种方式。
 
 实际上在 C 语言家族中 `for` 循环是写作 `loop` 的。
-Perl 6 是 C 语言家族中的一元。
+Perl 6 是 C 语言家族中的一员。
 
 [source,perl6]
 ----
@@ -1064,7 +1064,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTE: 更多关于循环和条件语句的信息，参见 https://docs.perl6.org/language/control
+注意： 更多关于循环和条件语句的信息，参见 https://docs.perl6.org/language/control
 
 
 == I/O
@@ -1116,7 +1116,7 @@ say "Dear $name welcome to Perl 6";
 ----
 
 === 运行 Shell 命令
-有两种子程序可以用来运行 shell 命令：
+有两种子例程可以用来运行 shell 命令：
 
 * `run` 不通过 shell 运行外部命令。
 
@@ -1221,13 +1221,13 @@ WARNING: Windows 下使用 `/` 或 `\\` 来定义目录 +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: 更多关于 I/O，详见 https://docs.perl6.org/type/IO
+注意： 更多关于 I/O，详见 https://docs.perl6.org/type/IO
 
-== Subroutines 子程序
-=== Definition 定义
-*子程序(Subroutines)* (也叫 *subs* 或 *functions*) 是一系列的功能性的打包(are a means of packaging a set of functionality.)。 +
+== 子例程
+=== 定义
+*子例程* (也叫 *subs* 或 *functions*) 是一种功能集的打包。 +
 
-定义子程序时以关键字 `sub` 起始。在定义之后你能通过子程序名(句柄？handle)来进行调用。+
+定义子例程时以关键字 `sub` 起始。在定义之后你能通过子例程名(句柄？handle)来进行调用。+
 让我们来看下面的例子：
 
 [source,perl6]
@@ -1239,14 +1239,14 @@ sub alien-greeting {
 alien-greeting;
 ----
 
-上面的例子给我们展示了一个不需要输入参数的子程序。
+上面的例子给我们展示了一个不需要输入参数的子例程。
 
 === Signature 函数签名
-很多子程序需要多个输入才能运行。这些输入由 *参数* 提供。
-一个子程序可以不定义或定义多个 *参数*。
-子程序所定义的参数之个数与类型称为它的*函数签名*。
+很多子例程需要多个输入才能运行。这些输入由 *参数* 提供。
+一个子例程可以不定义或定义多个 *参数*。
+子例程所定义的参数之个数与类型称为它的*函数签名*。
 
-下面的子程序接收一个字符串参数。
+下面的子例程接收一个字符串参数。
 
 [source,perl6]
 ----
@@ -1257,10 +1257,10 @@ say-hello "Paul";
 say-hello "Paula";
 ----
 
-=== Multiple dispatch 多分配
-我们可以定义多个有相同命名但有不同函数签名的的子程序。
-当这样的子程序被调用的时候，运行环境会根据提供的参数之数量和类型判断那个版本的同名子程序来运行。
-这种子程序和普通的子程序的定义方法是一样的，不过我们需要使用 `multi` 来代替原先的 `sub`。
+=== 多重分配
+我们可以定义多个有相同命名但有不同函数签名的的子例程。
+当这样的子例程被调用的时候，运行环境会根据提供的参数之数量和类型判断那个版本的同名子例程来运行。
+这种子例程和普通的子例程的定义方法是一样的，不过我们需要使用 `multi` 来代替原先的 `sub`。
 
 [source,perl6]
 ----
@@ -1275,8 +1275,8 @@ greet "Johnnie";
 greet "Laura","Mrs.";
 ----
 
-=== Default and Optional Parameters 默认参数和可选参数
-如果一个子程序被定义需要一个参数，但是我们调用它的时候没有提供所需的参数，那么这个子程序就不能运行。
+=== 默认参数和可选参数
+如果一个子例程被定义需要一个参数，但是我们调用它的时候没有提供所需的参数，那么这个子例程就不能运行。
 
 不过 Perl 6 提供了：
 
@@ -1296,7 +1296,7 @@ say-hello("Laura");
 ----
 
 如果使用者没有提供参数，那么它就默认使用预先给定的值。+
-上面是通过在子程序中给参数赋值的方式实现的。
+上面是通过在子例程中给参数赋值的方式实现的。
 
 [source,perl6]
 ----
@@ -1308,11 +1308,11 @@ say-hello("Laura");
 ----
 
 === 返回值
-我们现在为止看到的子程序都在终端中打印一些文字。
+我们现在为止看到的子例程都在终端中打印一些文字。
 
-一些时候我们需要让子程序 *返回* 值让我们能在我们的程序中能重复使用。
+一些时候我们需要让子例程 *返回* 值让我们能在我们的程序中能重复使用。
 
-在一般的情景下，子程序代码的最后一行被默认为返回值。
+在一般的情景下，子例程代码的最后一行被默认为返回值。
 [source,perl6]
 .Implicit return
 ----
@@ -1333,7 +1333,7 @@ sub squared ($x) {
 say "7 squared is equal to " ~ squared(7);
 ----
 ==== 限制返回值
-在之前的例子中，我们对将子程序的参数限定为特定类型。
+在之前的例子中，我们对将子例程的参数限定为特定类型。
 我们可以同样地限定返回值的类型。
 
 为了将返回值限定为特定类型，我们可以使用 `returns` 特征 (trait) 或在函数签名中使用箭标。
@@ -1355,7 +1355,7 @@ sub squared ($x --> Int) {
 }
 say "1.2 squared is equal to " ~ squared(1.2);
 ----
-如果子程序不能提供符合类型要求的返回值，程序就会报错。
+如果子例程不能提供符合类型要求的返回值，程序就会报错。
 
 ----
 Type check failed for return value; expected Int but got Rat (1.44)
@@ -1382,7 +1382,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 ----
 ====
 
-NOTE: 关于更多子程序和函数的资料，详见 https://docs.perl6.org/language/functions
+注意： 关于更多子例程和函数的资料，详见 https://docs.perl6.org/language/functions
 
 
 == 函数式编程
